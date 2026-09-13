@@ -1,71 +1,35 @@
 # Yujin Kim — Personal Website
 
-빌드 도구나 외부 라이브러리 없이 만든 GitHub Pages용 개인 홈페이지입니다. 시스템 테마를 자동으로 감지하며, 사용자가 선택한 라이트/다크 모드를 저장합니다. 데스크톱·태블릿·모바일 화면에 맞게 반응형으로 동작합니다.
-
-저장소 이름을 `kimyujin1005.github.io`로 변경하면 아래 주소에서 바로 사용할 수 있습니다.
+Yujin Kim의 연구·경력·학력을 소개하는 다중 페이지형 개인 홈페이지입니다.
 
 > <https://kimyujin1005.github.io>
+
+## 특징
+
+- Home, About, Experience, Research, Education의 실제 개별 페이지
+- 데스크톱 18px, 모바일 17px 기반의 큰 본문 글꼴
+- 시스템 설정을 감지하고 선택을 저장하는 라이트/다크 모드
+- 키보드 내비게이션과 모바일 메뉴
+- 빌드 과정이나 외부 프레임워크가 없는 정적 HTML/CSS/JavaScript
+- GitHub Pages 사용자 사이트의 루트 경로에 최적화
 
 ## 파일 구조
 
 ```text
 .
-├── assets/             # 프로필 사진, CV, 파비콘 등
-├── content/
-│   └── profile.js      # 홈페이지에 표시할 모든 CV 데이터
-├── index.html          # 시맨틱 페이지 구조
-├── script.js           # 콘텐츠 렌더링, 메뉴, 테마 전환
-└── styles.css          # 반응형 디자인과 라이트/다크 테마
+├── about/index.html       # 소개와 연구 관심 분야
+├── education/index.html   # 학력, 수상
+├── experience/index.html  # 연구·산업·교육 경력
+├── research/index.html    # 논문, 심사 중 원고, 포스터·발표
+├── assets/                # 파비콘, 추후 프로필 사진과 CV
+├── index.html             # 홈페이지
+├── script.js              # 테마 및 모바일 메뉴
+├── styles.css             # 공통 디자인 시스템
+├── robots.txt
+└── sitemap.xml
 ```
 
-## CV 내용 넣기
-
-홈페이지 내용은 [`content/profile.js`](content/profile.js) 한 파일에서 관리합니다. `about`은 기본 소개로 항상 표시되고, 나머지 CV 섹션은 배열이 비어 있으면 자동으로 숨겨집니다.
-
-기본 정보 예시:
-
-```js
-name: "Yujin Kim",
-role: "Software Engineer",
-location: "Seoul, Republic of Korea",
-email: "hello@example.com",
-avatar: "assets/profile.jpg",
-resume: "assets/Yujin_Kim_CV.pdf",
-```
-
-경력 항목 예시:
-
-```js
-experience: [
-  {
-    period: "2024 — Present",
-    role: "Software Engineer",
-    company: "Company",
-    companyUrl: "https://example.com",
-    location: "Seoul, Republic of Korea",
-    summary: "What you worked on and why it mattered.",
-    highlights: ["A measurable result", "Another meaningful contribution"],
-  },
-],
-```
-
-프로젝트 항목 예시:
-
-```js
-projects: [
-  {
-    title: "Project name",
-    description: "A short explanation of the problem and solution.",
-    technologies: ["Python", "PyTorch", "Docker"],
-    sourceUrl: "https://github.com/...",
-    liveUrl: "https://...",
-  },
-],
-```
-
-같은 방식으로 `skills`, `education`, `publications`, `honors` 배열을 채우면 해당 섹션과 내비게이션이 자동으로 나타납니다. 실제 CV 내용을 모두 넣은 뒤 `draft: false`로 변경하면 안내 카드가 사라집니다.
-
-프로필 사진은 `assets/profile.jpg`, CV 파일은 `assets/Yujin_Kim_CV.pdf`처럼 저장하고 `profile.js`의 경로와 일치시키면 됩니다.
+각 페이지의 주요 내용은 검색 엔진과 JavaScript 비활성 환경에서도 읽을 수 있도록 HTML에 직접 들어 있습니다. 공통 디자인은 `styles.css`, 테마와 모바일 메뉴 동작은 `script.js`에서 관리합니다.
 
 ## 로컬에서 확인하기
 
@@ -73,14 +37,13 @@ projects: [
 python3 -m http.server 8000
 ```
 
-브라우저에서 <http://localhost:8000>을 열어 확인합니다.
+브라우저에서 <http://localhost:8000>을 엽니다.
 
 ## GitHub Pages 설정
 
-1. GitHub 저장소의 **Settings → General**에서 저장소 이름을 정확히 `kimyujin1005.github.io`로 변경합니다.
-2. **Settings → Pages**로 이동합니다.
-3. **Build and deployment**에서 `Deploy from a branch`를 선택합니다.
-4. 브랜치는 `main`, 폴더는 `/(root)`를 선택하고 저장합니다.
-5. 배포가 끝나면 <https://kimyujin1005.github.io>에서 확인합니다.
+- 저장소: `kimyujin1005/kimyujin1005.github.io`
+- Source: `Deploy from a branch`
+- Branch: `main`
+- Folder: `/(root)`
 
-이 사이트는 빌드 과정이 없는 정적 사이트이므로 `main` 브랜치에 푸시하면 변경 사항이 그대로 배포됩니다.
+`main` 브랜치에 푸시하면 <https://kimyujin1005.github.io>에 자동으로 배포됩니다.

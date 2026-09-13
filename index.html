@@ -4,26 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#0a0d0f" />
     <meta
       name="description"
-      content="Yujin Kim's personal portfolio — experience, projects, and selected work."
+      content="Yujin Kim is a Ph.D. student at UC Merced researching computer architecture and AI accelerators."
     />
-    <meta name="theme-color" content="#0b0d10" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Yujin Kim — Developer Portfolio" />
+    <meta property="og:title" content="Yujin Kim — Computer Architecture Researcher" />
     <meta
       property="og:description"
-      content="Experience, projects, and selected work by Yujin Kim."
+      content="Research, experience, and academic background of Yujin Kim."
     />
-    <link
-      rel="canonical"
-      href="https://kimyujin1005.github.io/"
-    />
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-    <link rel="alternate icon" href="assets/favicon.ico" sizes="any" />
-    <link rel="stylesheet" href="styles.css?v=20260912-1" />
-    <title>Yujin Kim — Developer Portfolio</title>
-
+    <link rel="canonical" href="https://kimyujin1005.github.io/" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="/assets/favicon.ico" sizes="any" />
+    <link rel="stylesheet" href="/styles.css?v=20260912-2" />
+    <title>Yujin Kim — Computer Architecture Researcher</title>
     <script>
       (() => {
         let savedTheme = null;
@@ -38,30 +34,26 @@
         document.documentElement.dataset.theme = savedTheme || systemTheme;
       })();
     </script>
-    <script src="content/profile.js?v=20260912-1" defer></script>
-    <script src="script.js?v=20260912-1" defer></script>
+    <script src="/script.js?v=20260912-2" defer></script>
   </head>
-
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <header class="site-header" data-header>
+    <header class="site-header">
       <nav class="nav shell" aria-label="Primary navigation">
-        <a class="brand" href="#top" aria-label="Go to the top">
-          <span class="brand-mark" aria-hidden="true" data-initials>YK</span>
-          <span class="brand-name" data-name>Yujin Kim</span>
+        <a class="brand" href="/" aria-label="Yujin Kim, home">
+          <span class="brand-mark" aria-hidden="true">YK</span>
+          <span class="brand-name">Yujin Kim</span>
         </a>
-
-        <div class="nav-desktop" aria-label="Page sections" data-nav-desktop></div>
-
+        <div class="nav-links">
+          <a class="nav-link" href="/" aria-current="page">Home</a>
+          <a class="nav-link" href="/about/">About</a>
+          <a class="nav-link" href="/experience/">Experience</a>
+          <a class="nav-link" href="/research/">Research</a>
+          <a class="nav-link" href="/education/">Education</a>
+        </div>
         <div class="nav-actions">
-          <button
-            class="icon-button theme-toggle"
-            type="button"
-            aria-label="Switch color theme"
-            title="Switch color theme"
-            data-theme-toggle
-          >
+          <button class="icon-button theme-toggle" type="button" aria-label="Switch color theme" data-theme-toggle>
             <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="12" cy="12" r="3.5"></circle>
               <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path>
@@ -70,147 +62,88 @@
               <path d="M20.5 15.2A8.4 8.4 0 0 1 8.8 3.5 8.5 8.5 0 1 0 20.5 15.2Z"></path>
             </svg>
           </button>
-
-          <button
-            class="icon-button menu-toggle"
-            type="button"
-            aria-expanded="false"
-            aria-controls="mobile-menu"
-            aria-label="Open menu"
-            data-menu-toggle
-          >
-            <span></span>
-            <span></span>
+          <button class="icon-button menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" data-menu-toggle>
+            <span></span><span></span>
           </button>
         </div>
       </nav>
-
       <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
-        <nav class="mobile-menu-inner shell" aria-label="Mobile navigation" data-nav-mobile></nav>
+        <nav class="mobile-menu-inner shell" aria-label="Mobile navigation">
+          <a class="nav-link" href="/" aria-current="page">Home</a>
+          <a class="nav-link" href="/about/">About</a>
+          <a class="nav-link" href="/experience/">Experience</a>
+          <a class="nav-link" href="/research/">Research</a>
+          <a class="nav-link" href="/education/">Education</a>
+        </nav>
       </div>
     </header>
 
     <main id="main-content">
-      <section class="hero shell" id="top" aria-labelledby="hero-title">
-        <div class="hero-copy reveal">
-          <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span><span data-status>Portfolio in progress</span></p>
-          <h1 id="hero-title">
-            Hi, I’m <span class="accent" data-first-name>Yujin</span>.<br />
-            <span data-headline>I build thoughtful software.</span>
-          </h1>
-          <p class="hero-intro" data-intro>
-            I’m preparing this space to share my experience, projects, and research.
+      <section class="home-hero shell">
+        <div>
+          <p class="eyebrow">Computer Architecture · AI Accelerators</p>
+          <h1>Hi, I’m <span>Yujin.</span><br />I design efficient architectures for AI.</h1>
+          <p class="hero-lead">
+            I’m a Ph.D. student in Electrical Engineering and Computer Science at UC Merced, working with the MoCA Lab.
           </p>
-          <div class="hero-actions" data-hero-actions></div>
+          <div class="hero-actions">
+            <a class="button" href="/research/">
+              Explore my research
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </a>
+            <a class="button button-secondary" href="https://github.com/kimyujin1005" target="_blank" rel="noreferrer">
+              GitHub
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 9l-3 3 3 3M16 9l3 3-3 3M14 5l-4 14"></path></svg>
+            </a>
+          </div>
         </div>
 
-        <aside class="profile-card reveal" aria-label="Quick profile">
-          <div class="profile-card-topline">
-            <span>profile.json</span>
-            <span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-          </div>
-          <div class="profile-identity">
-            <div class="avatar-shell" data-avatar-shell>
-              <img data-avatar alt="" />
-              <span class="avatar-monogram" data-initials>YK</span>
-            </div>
-            <div>
-              <strong data-name>Yujin Kim</strong>
-              <span data-role>Developer</span>
-            </div>
-          </div>
-          <dl class="profile-facts" data-profile-facts></dl>
-          <div class="profile-stack" data-focus-list></div>
+        <aside class="current-card" aria-labelledby="current-title">
+          <div class="current-label"><span>Currently</span><span class="status-dot" aria-hidden="true"></span></div>
+          <h2 id="current-title">Ph.D. in Engineering, EECS</h2>
+          <p class="current-institution">University of California, Merced</p>
+          <dl class="fact-list">
+            <div class="fact"><dt>Lab</dt><dd><a href="https://sites.ucmerced.edu/moca/" target="_blank" rel="noreferrer">MoCA Lab ↗</a></dd></div>
+            <div class="fact"><dt>Advisor</dt><dd>Prof. Hyeran Jeon</dd></div>
+            <div class="fact"><dt>Since</dt><dd>August 2026</dd></div>
+            <div class="fact"><dt>Location</dt><dd>Merced, California</dd></div>
+          </dl>
         </aside>
       </section>
 
-      <section class="section shell reveal" id="about" aria-labelledby="about-title">
-        <div class="section-heading">
-          <p class="section-index">01 / About</p>
-          <h2 id="about-title">A little about me</h2>
-        </div>
-        <div class="about-grid">
-          <div class="prose" data-about></div>
-          <div class="draft-card" data-draft-card>
-            <span class="draft-card-icon" aria-hidden="true">↳</span>
-            <div>
-              <strong>CV content is next</strong>
-              <p>Experience, education, publications, and project details will be added from the CV.</p>
-            </div>
+      <section class="route-section">
+        <div class="shell">
+          <div class="section-heading">
+            <div><p class="eyebrow">Explore</p><h2>Start with what interests you.</h2></div>
+            <p>Each topic now has its own page, with larger type and a clearer reading order.</p>
+          </div>
+          <div class="route-grid">
+            <a class="route-card" href="/about/">
+              <div><span class="route-number">01</span><h3>About</h3><p>Background and research interests.</p></div>
+              <span class="route-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+            </a>
+            <a class="route-card" href="/experience/">
+              <div><span class="route-number">02</span><h3>Experience</h3><p>Research roles and industry experience.</p></div>
+              <span class="route-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+            </a>
+            <a class="route-card" href="/research/">
+              <div><span class="route-number">03</span><h3>Research</h3><p>Publications, manuscripts, and presentations.</p></div>
+              <span class="route-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+            </a>
+            <a class="route-card" href="/education/">
+              <div><span class="route-number">04</span><h3>Education</h3><p>Academic background, honors, and awards.</p></div>
+              <span class="route-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+            </a>
           </div>
         </div>
-      </section>
-
-      <section class="section shell reveal" id="experience" aria-labelledby="experience-title" data-optional-section hidden>
-        <div class="section-heading">
-          <p class="section-index">02 / Experience</p>
-          <h2 id="experience-title">Where I’ve worked</h2>
-        </div>
-        <div class="timeline" data-experience></div>
-      </section>
-
-      <section class="section shell reveal" id="projects" aria-labelledby="projects-title" data-optional-section hidden>
-        <div class="section-heading section-heading-row">
-          <div>
-            <p class="section-index">03 / Projects</p>
-            <h2 id="projects-title">Selected work</h2>
-          </div>
-          <a class="text-link" data-all-projects hidden>View GitHub <span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="project-grid" data-projects></div>
-      </section>
-
-      <section class="section shell reveal" id="skills" aria-labelledby="skills-title" data-optional-section hidden>
-        <div class="section-heading">
-          <p class="section-index">04 / Skills</p>
-          <h2 id="skills-title">Tools I work with</h2>
-        </div>
-        <div class="skill-grid" data-skills></div>
-      </section>
-
-      <section class="section shell reveal" id="education" aria-labelledby="education-title" data-optional-section hidden>
-        <div class="section-heading">
-          <p class="section-index">05 / Education</p>
-          <h2 id="education-title">Education</h2>
-        </div>
-        <div class="compact-list" data-education></div>
-      </section>
-
-      <section class="section shell reveal" id="publications" aria-labelledby="publications-title" data-optional-section hidden>
-        <div class="section-heading">
-          <p class="section-index">06 / Publications</p>
-          <h2 id="publications-title">Publications</h2>
-        </div>
-        <ol class="publication-list" data-publications></ol>
-      </section>
-
-      <section class="section shell reveal" id="honors" aria-labelledby="honors-title" data-optional-section hidden>
-        <div class="section-heading">
-          <p class="section-index">07 / Honors</p>
-          <h2 id="honors-title">Honors &amp; awards</h2>
-        </div>
-        <div class="compact-list" data-honors></div>
-      </section>
-
-      <section class="section contact-section shell reveal" id="contact" aria-labelledby="contact-title">
-        <p class="section-index">08 / Contact</p>
-        <h2 id="contact-title">Let’s build something useful.</h2>
-        <p data-contact-copy>
-          The best way to reach me will be listed here when the CV is added. For now, you can find me on GitHub.
-        </p>
-        <div class="contact-actions" data-contact-actions></div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="shell footer-inner">
-        <p>© <span data-year></span> <span data-name>Yujin Kim</span></p>
-        <p>Designed and built with plain HTML, CSS, and JavaScript.</p>
+      <div class="footer-inner shell">
+        <p>© 2026 Yujin Kim</p>
+        <div class="footer-links"><a href="https://github.com/kimyujin1005" target="_blank" rel="noreferrer">GitHub ↗</a></div>
       </div>
     </footer>
-
-    <noscript>
-      <div class="noscript-note">This portfolio needs JavaScript enabled to load its CV content.</div>
-    </noscript>
   </body>
 </html>

@@ -1,548 +1,216 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your page name</title>
-  <!-- Use your own favicon! -->
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-  <style>
-    :root{
-      --primary-color:#283347;
-      --text-primary:#d9e2ec;
-      --text-accent:#ff6b6b;
-      --accent-color:#4fb3d8;
-      --bg-color:#1c2533;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="Yujin Kim's personal portfolio — experience, projects, and selected work."
+    />
+    <meta name="theme-color" content="#0b0d10" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Yujin Kim — Developer Portfolio" />
+    <meta
+      property="og:description"
+      content="Experience, projects, and selected work by Yujin Kim."
+    />
+    <link
+      rel="canonical"
+      href="https://kimyujin1005.github.io/"
+    />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="assets/favicon.ico" sizes="any" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Yujin Kim — Developer Portfolio</title>
 
-    *{margin:0;padding:0;box-sizing:border-box;}
+    <script>
+      (() => {
+        let savedTheme = null;
+        try {
+          savedTheme = localStorage.getItem("portfolio-theme");
+        } catch {
+          // Storage can be unavailable in strict privacy modes.
+        }
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+        document.documentElement.dataset.theme = savedTheme || systemTheme;
+      })();
+    </script>
+    <script src="content/profile.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
 
-    html{scroll-behavior:smooth;scroll-padding-top:100px;height:100%;}
-    body{
-      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-      background-color:var(--bg-color);color:var(--text-primary);
-      line-height:1.6;display:flex;flex-direction:column;min-height:100%;
-      overflow-x:hidden;
-    }
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
 
-    a{color:var(--accent-color);text-decoration:underline;transition:color .3s ease;}
-    a:hover{color:var(--text-accent);}
-    .text-accent{font-weight:bold;color:var(--text-accent);}
+    <header class="site-header" data-header>
+      <nav class="nav shell" aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="Go to the top">
+          <span class="brand-mark" aria-hidden="true" data-initials>YK</span>
+          <span class="brand-name" data-name>Yujin Kim</span>
+        </a>
 
-    nav{
-      line-height:60px;position:fixed;top:0;width:100%;
-      background-color:var(--primary-color);padding:.5rem 1rem;z-index:800;
-      backdrop-filter:blur(10px);box-shadow:0 2px 4px rgba(0,0,0,.1);
-    }
-    .nav-content{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
-    .nav-brand{font-size:2.4rem;font-weight:bold;text-decoration:none;}
-    .nav-links{display:flex;list-style:none;gap:1.5rem;}
-    .nav-links a{color:var(--text-primary);text-decoration:none;font-weight:500;padding:.5rem 0;}
-    .nav-links a:hover{color:var(--text-accent);}
-    .hamburger{display:none;cursor:pointer;background:none;border:none;padding:.5rem;}
-    .bar{display:block;width:25px;height:3px;margin:5px auto;background-color:var(--text-primary);}
+        <div class="nav-desktop" aria-label="Page sections" data-nav-desktop></div>
 
-    .main-content{
-      max-width:1200px;margin:80px auto 0;padding:2rem;
-      display:grid;grid-template-columns:minmax(250px, 300px) 1fr;gap:3rem;
-      justify-content:center;
-    }
+        <div class="nav-actions">
+          <button
+            class="icon-button theme-toggle"
+            type="button"
+            aria-label="Switch color theme"
+            title="Switch color theme"
+            data-theme-toggle
+          >
+            <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="3.5"></circle>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path>
+            </svg>
+            <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.5 15.2A8.4 8.4 0 0 1 8.8 3.5 8.5 8.5 0 1 0 20.5 15.2Z"></path>
+            </svg>
+          </button>
 
-    .profile-section{
-      position:sticky;top:100px;height:fit-content;text-align:center;
-      min-width:250px;
-    }
-    .profile-image{
-      width:100%;max-width:300px;height:auto;aspect-ratio:1/1;
-      border-radius:50%;object-fit:cover;margin-bottom:1.3rem;
-      border:2px solid var(--accent-color);transition:transform .1s ease;
-    }
-    .profile-image:hover{transform:scale(1.01);}
-    .profile-title{font-size:1rem;margin-bottom:1.2rem;}
-    .social-links{display:flex;gap:1rem;margin-top:1rem;justify-content:center;}
-    .social-link{color:white !important;text-decoration:none;transition:transform .3s ease;}
-    .social-link:hover{transform:scale(1.5);}
-    .social-icon{width:24px;height:24px;}
+          <button
+            class="icon-button menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label="Open menu"
+            data-menu-toggle
+          >
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
 
-    .content-section{
-      background-color:var(--primary-color);padding:2rem;border-radius:10px;margin-bottom:2rem;
-      transition:transform .3s ease, box-shadow .3s ease;
-      max-width:none; /* 기존 제한 제거 */
-      width:100%;
-    }
-    .content-section:hover{box-shadow:0 10px 20px rgba(0,0,0,.2);}
-
-    .section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;}
-    .section-title{
-      font-size:1.2rem;color:var(--accent-color);
-      border-bottom:2px solid var(--accent-color);padding-bottom:.5rem;margin:0;flex-grow:1;
-    }
-
-    /* 고정 크기 토글 버튼 */
-    .toggle-btn{
-      background:none;border:1px solid var(--accent-color);color:var(--accent-color);
-      padding:.3rem .8rem;border-radius:6px;cursor:pointer;font-size:.9rem;
-      transition:all .3s ease;white-space:nowrap;min-width:120px;height:36px;
-      display:inline-flex;align-items:center;justify-content:center;
-    }
-    .toggle-btn:hover{background-color:var(--accent-color);color:var(--primary-color);}
-
-    .section-content{
-      margin:0;
-    }
-
-    .research-list{display:grid;grid-template-columns:repeat(2,1fr);gap:auto;flex-wrap:wrap;list-style-type:disc;padding:0;margin:0;}
-    .research-list li{flex:0 0 45%;margin-left:20px;}
-
-    .experience-container{
-      display:flex;flex-direction:column;gap:.5rem;padding:.5rem;background-color:var(--primary-color);
-      border-radius:10px;margin-bottom:.5rem;box-shadow:0 4px 8px rgba(0,0,0,.2);
-      transition:transform .3s ease, box-shadow .3s ease;border:1px solid var(--bg-color);
-    }
-    .experience-container:hover{transform:translateY(-5px);box-shadow:0 10px 20px rgba(0,0,0,.4);}
-
-    .experience-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;}
-    .experience-title{font-size:1.1rem;font-weight:bold;color:var(--text-primary);word-break:break-word;margin:0;flex:1;}
-    .experience-dates{font-size:.8rem;font-weight:bold;color:var(--text-primary);white-space:nowrap;margin-left:auto;text-align:right;float:right;}
-    .experience-subtitle{font-size:.9rem;font-weight:bold;color:var(--text-accent);}
-    .experience-description{font-size:.8rem;margin-bottom:0rem;}
-    .location-content{font-size:.6rem;font-style:italic;}
-    .divider{border-top:1px solid var(--text-primary);margin:20px 0;}
-
-    .author-highlight{font-weight:bold;font-style:italic;text-decoration:underline;}
-    .short-text{display:none;}
-    .full-text{display:inline;}
-
-    /* ====== 개선된 토글 애니메이션 ====== */
-    .experience-container[data-extra="true"]{
-    max-height:0;opacity:0;overflow:hidden;pointer-events:none; 
-    margin: 0; padding-top: 0; padding-bottom: 0; border: 0; 
-    transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
-    will-change: max-height, opacity, transform, box-shadow;
-    }
-    .experience-container[data-extra="true"].ready{margin: 0 0 .5rem; padding-top: .5rem; padding-bottom: .5rem; }
-    .experience-container[data-extra="true"].is-open{opacity:1; border: 1px solid var(--bg-color); margin: 0 0 .5rem; padding: .5rem; max-height: none;}
-    .experience-container[data-extra="true"].is-open.ready{pointer-events:auto; transition: all 0.3s ease;}
-    .experience-container[data-extra="true"].is-open.ready:hover{transform:translateY(-5px);box-shadow:0 10px 20px rgba(0,0,0,.4);}
-
-    .footer{background: var(--primary-color); color: var(--text-primary); padding: .5rem 0; }
-    .footer.inline {margin: 1rem 0;}
-    .footer.card {border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,.2); border: 1px solid var(--bg-color); padding: 1rem 0;}
-    .footer.card:hover{box-shadow: 0 10px 20px rgba(0,0,0,.4);}
-    .footer-content{max-width: 1200px; margin: 0 auto; text-align: center; font-size: .8rem;}
-
-    @media (max-width:920px){
-      html{scroll-padding-top:90px;}
-      .main-content{grid-template-columns:1fr;gap:1rem;padding:1rem;}
-      .profile-section{position:static;text-align:center;}
-      .social-links{justify-content:center;}
-      .nav-brand{font-size:1.5rem;}
-      .hamburger{display:block;}
-      .nav-links{
-        position:fixed;left:-100%;top:70px;flex-direction:column;background-color:var(--primary-color);
-        width:100%;padding:1rem;gap:1rem;transition:.3s;
-      }
-      .nav-links.active{left:0;}
-      .nav-links a{opacity:0;transform:translateX(-20px);transition:opacity .3s ease, transform .3s ease;}
-      .nav-links a.visible{opacity:1;transform:translateX(0);}
-      .section-title{font-size:1.2rem;}
-      .experience-title h3{font-size:1rem;}
-      .experience-container{flex-direction:column;}
-      .experience-images{display:flex;flex-direction:column;gap:.8rem;}
-      .experience-header{flex-direction:column;align-items:flex-start;}
-      .experience-dates{margin:0;margin-bottom:-10px;padding:0;order:-1;text-align:left;line-height:1;}
-      .short-text{display:inline;}
-      .full-text{display:none;}
-    }
-  </style>
-</head>
-<body>
-  <nav>
-    <div class="nav-content">
-      <a class="nav-brand" href="#YourName">Put your name</a>
-      <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
-      <div class="nav-links">
-        <li><a href="#About">About</a></li>
-        <li><a href="#Education">Education</a></li>
-        <li><a href="#Experience">Experience</a></li>
-        <li><a href="#Projects">Projects</a></li>
-        <li><a href="#Publications">Publications</a></li>
-        <li><a href="#Honors">Honors</a></li>
+      <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
+        <nav class="mobile-menu-inner shell" aria-label="Mobile navigation" data-nav-mobile></nav>
       </div>
-    </div>
-  </nav>
+    </header>
 
-  <main class="main-content">
-    <aside class="profile-section" id="Profile">
-      <!-- Put profile image to assets folder -->
-      <img src="assets/profile.jpg" alt="Profile image" class="profile-image"/>
-      <p class="profile-title"><p style="font-size:2rem;font-weight:bold;">Position</p></p>
-      <div class="social-links">
-        <a href="mailto:your_email_address" class="social-link"><img src="assets/email.png" alt="Email Icon" class="social-icon"/></a>
-        <!-- Put CV to assets folder -->
-        <a href="assets/CV.pdf" class="social-link"><img src="assets/cv.png" alt="CV Icon" class="social-icon"/></a>
-        <a href="#" target="_blank" class="social-link"><img src="assets/linkedin.png" alt="LinkedIn Icon" class="social-icon"/></a>
-        <a href="#" target="_blank" class="social-link"><img src="assets/google_scholar.png" alt="Google Scholar Icon" class="social-icon"/></a>
-        <a href="#" target="_blank" class="social-link"><img src="assets/github.png" alt="GitHub Icon" class="social-icon"/></a>
-        <a href="#" target="_blank" class="social-link"><img src="assets/huggingface.png" alt="Hugging Face Icon" class="social-icon"/></a>
+    <main id="main-content">
+      <section class="hero shell" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span><span data-status>Portfolio in progress</span></p>
+          <h1 id="hero-title">
+            Hi, I’m <span class="accent" data-first-name>Yujin</span>.<br />
+            <span data-headline>I build thoughtful software.</span>
+          </h1>
+          <p class="hero-intro" data-intro>
+            I’m preparing this space to share my experience, projects, and research.
+          </p>
+          <div class="hero-actions" data-hero-actions></div>
+        </div>
+
+        <aside class="profile-card reveal" aria-label="Quick profile">
+          <div class="profile-card-topline">
+            <span>profile.json</span>
+            <span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <div class="profile-identity">
+            <div class="avatar-shell" data-avatar-shell>
+              <img data-avatar alt="" />
+              <span class="avatar-monogram" data-initials>YK</span>
+            </div>
+            <div>
+              <strong data-name>Yujin Kim</strong>
+              <span data-role>Developer</span>
+            </div>
+          </div>
+          <dl class="profile-facts" data-profile-facts></dl>
+          <div class="profile-stack" data-focus-list></div>
+        </aside>
+      </section>
+
+      <section class="section shell reveal" id="about" aria-labelledby="about-title">
+        <div class="section-heading">
+          <p class="section-index">01 / About</p>
+          <h2 id="about-title">A little about me</h2>
+        </div>
+        <div class="about-grid">
+          <div class="prose" data-about></div>
+          <div class="draft-card" data-draft-card>
+            <span class="draft-card-icon" aria-hidden="true">↳</span>
+            <div>
+              <strong>CV content is next</strong>
+              <p>Experience, education, publications, and project details will be added from the CV.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section shell reveal" id="experience" aria-labelledby="experience-title" data-optional-section hidden>
+        <div class="section-heading">
+          <p class="section-index">02 / Experience</p>
+          <h2 id="experience-title">Where I’ve worked</h2>
+        </div>
+        <div class="timeline" data-experience></div>
+      </section>
+
+      <section class="section shell reveal" id="projects" aria-labelledby="projects-title" data-optional-section hidden>
+        <div class="section-heading section-heading-row">
+          <div>
+            <p class="section-index">03 / Projects</p>
+            <h2 id="projects-title">Selected work</h2>
+          </div>
+          <a class="text-link" data-all-projects hidden>View GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="project-grid" data-projects></div>
+      </section>
+
+      <section class="section shell reveal" id="skills" aria-labelledby="skills-title" data-optional-section hidden>
+        <div class="section-heading">
+          <p class="section-index">04 / Skills</p>
+          <h2 id="skills-title">Tools I work with</h2>
+        </div>
+        <div class="skill-grid" data-skills></div>
+      </section>
+
+      <section class="section shell reveal" id="education" aria-labelledby="education-title" data-optional-section hidden>
+        <div class="section-heading">
+          <p class="section-index">05 / Education</p>
+          <h2 id="education-title">Education</h2>
+        </div>
+        <div class="compact-list" data-education></div>
+      </section>
+
+      <section class="section shell reveal" id="publications" aria-labelledby="publications-title" data-optional-section hidden>
+        <div class="section-heading">
+          <p class="section-index">06 / Publications</p>
+          <h2 id="publications-title">Publications</h2>
+        </div>
+        <ol class="publication-list" data-publications></ol>
+      </section>
+
+      <section class="section shell reveal" id="honors" aria-labelledby="honors-title" data-optional-section hidden>
+        <div class="section-heading">
+          <p class="section-index">07 / Honors</p>
+          <h2 id="honors-title">Honors &amp; awards</h2>
+        </div>
+        <div class="compact-list" data-honors></div>
+      </section>
+
+      <section class="section contact-section shell reveal" id="contact" aria-labelledby="contact-title">
+        <p class="section-index">08 / Contact</p>
+        <h2 id="contact-title">Let’s build something useful.</h2>
+        <p data-contact-copy>
+          The best way to reach me will be listed here when the CV is added. For now, you can find me on GitHub.
+        </p>
+        <div class="contact-actions" data-contact-actions></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <p>© <span data-year></span> <span data-name>Yujin Kim</span></p>
+        <p>Designed and built with plain HTML, CSS, and JavaScript.</p>
       </div>
-      <br/><b>University</b>
-      <br/><span style="font-size:.8rem;">Email</span>
-    </aside>
+    </footer>
 
-    <div class="content-sections">
-      <!-- About -->
-      <section class="content-section" id="About">
-        <h2 class="section-title">About me</h2>
-        <div class="section-content">
-          <p>Introduce yourself</p>
-        </div>
-        <div class="section-content">
-          <h2>Research Interests</h2>
-          <ul class="research-list">
-            <!-- Short text appears on the phone -->
-            <li><span class="short-text">Interests Short 1</span><span class="full-text">Interests Long 1</span></li>
-            <li><span class="short-text">Interests Short 2</span><span class="full-text">Interests Long 2</span></li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Education -->
-      <section class="content-section" id="Education">
-        <div class="section-header">
-          <h2 class="section-title">Education</h2>
-          <button class="toggle-btn" onclick="toggleGroup('edu-group', this)">Show All</button>
-        </div>
-
-        <div id="edu-group" class="experience-group">
-          <!-- 기본 노출 -->
-          <div class="experience-container">
-            <div class="experience-text">
-              <div class="experience-header">
-                <h1 class="experience-title">Education 1</h1>
-                <span class="experience-dates">[Year - Year]</span>
-              </div>
-              <h2 class="experience-subtitle text-accent">University</h2>
-              <p class="experience-description">
-                <span class="location-content">@ Houston, Texas, USA</span>
-              </p>
-            </div>
-          </div>
-
-          <!-- ▼ 숨김: -->
-          <div class="experience-container" data-extra="true">
-            <div class="experience-text">
-              <div class="experience-header">
-                <h1 class="experience-title">Education 2</h1>
-                <span class="experience-dates">[Year - Year]</span>
-              </div>
-              <h2 class="experience-subtitle text-accent">University</h2>
-              <p class="experience-description">
-                <span class="location-content">@ Lausanne, Switzerland</span>
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- Experience -->
-      <section class="content-section" id="Experience">
-        <!-- Academic -->
-        <div class="section-header" style="margin-top:1rem;">
-          <h2 class="section-title">Academic Experience</h2>
-          <button class="toggle-btn" onclick="toggleGroup('exp-academic', this)">Show All</button>
-        </div>
-        <div id="exp-academic" class="experience-group">
-          <!-- 기본 노출 -->
-          <div class="experience-container">
-            <div class="experience-text">
-              <div class="experience-header">
-                <h1 class="experience-title">Experience 1</h1>
-                <span class="experience-dates">[Year - Year]</span>
-              </div>
-              <h2 class="experience-subtitle text-accent">Visiting Scholar</h2>
-              <p class="experience-description">
-                <a href="https://website.com" target="_blank">Laboratory</a>
-                (Advisor: <a href="https://advisor.com" target="_blank">Advisor</a>)<br/>
-                <span class="location-content">@ Boston, Massachusetts, USA</span>
-              </p>
-            </div>
-          </div>
-
-          <!-- 숨김 -->
-          <div class="experience-container" data-extra="true">
-            <div class="experience-text">
-              <div class="experience-header">
-                <h1 class="experience-title">Experience 2</h1>
-                <span class="experience-dates">[Year - Year]</span>
-              </div>
-              <h2 class="experience-subtitle text-accent">Research Intern</h2>
-              <p class="experience-description">
-                <a href="https://website.com" target="_blank">Laboratory</a>
-                (Advisor: <a href="https://advisor.com" target="_blank">Advisor</a>)<br/>
-                <span class="location-content">@ Boston, Massachusetts, USA</span>
-              </p>
-            </div>
-          </div>
-        </div>
-
-
-        <!-- Industry -->
-        <div class="section-header" style="margin-top:1rem;">
-          <h2 class="section-title">Industry Experience</h2>
-          <button class="toggle-btn" onclick="toggleGroup('exp-industry', this)">Show All</button>
-        </div>
-        <div id="exp-industry" class="experience-group">
-          <!-- 기본 노출 -->
-          <div class="experience-container">
-            <div class="experience-text">
-              <div class="experience-header">
-                <h1 class="experience-title">Experience 1</h1>
-                <span class="experience-dates">[Year - Year]</span>
-              </div>
-              <h2 class="experience-subtitle text-accent">Independent Researcher</h2>
-              <p class="experience-description">
-                Lab<br/>
-                <span class="location-content">@ Seoul, Republic of Korea</span>
-              </p>
-            </div>
-          </div>
-
-          <!-- 숨김 -->
-          <div class="experience-container" data-extra="true">
-            <div class="experience-text">
-              <div class="experience-header">
-                <h1 class="experience-title">Experience 2</h1>
-                <span class="experience-dates">[Year - Year]</span>
-              </div>
-              <h2 class="experience-subtitle text-accent">Research Intern</h2>
-              <p class="experience-description">
-                Position<br/>
-                <span class="location-content">@ Seoul, South Korea</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Projects -->
-      <section class="content-section" id="Projects">
-        <div class="section-header">
-          <h2 class="section-title">Projects</h2>
-          <button class="toggle-btn" onclick="toggleGroup('projects-group', this)">Show All</button>
-        </div>
-
-        <div id="projects-group" class="experience-group">
-          <div class="experience-container">
-            <div class="experience-text">
-              <div class="experience-header">
-                <h1 class="experience-title">Project 1</h1>
-                <span class="experience-dates">[Year - Year]</span>
-              </div>
-              <p class="experience-description">
-                – Description 1<br/>
-              </p>
-            </div>
-          </div>
-
-          <!-- 숨김 -->
-          <div class="experience-container" data-extra="true">
-            <div class="experience-text">
-              <div class="experience-header">
-                <h1 class="experience-title">Project 2</h1>
-                <span class="experience-dates">[Year – Year]</span>
-              </div>
-              <p class="experience-description">
-                – Description 2<br/>
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Publications -->
-      <section class="content-section" id="Publications">
-        <div class="section-header">
-          <h2 class="section-title">Publications</h2>
-          <button class="toggle-btn" onclick="toggleGroup('pubs-group', this)">Show All</button>
-        </div>
-        <div id="pubs-group" class="experience-group">
-          <div class="experience-container">
-            <div class="experience-text">
-              <p class="experience-description">[Venue 1] <span class="experience-dates">[Year]</span></p>
-              <div class="experience-header">
-                <h1 class="experience-title"><a href="#" target="_blank">Paper title 1</a></h1>
-              </div>
-              <p class="experience-description"><span class="author-highlight">Author</span>, Authors</p>
-            </div>
-          </div>
-
-          <div class="experience-container" data-extra="true">
-            <div class="experience-text">
-              <p class="experience-description">[Venue 2] <span class="experience-dates">[Year]</span></p>
-              <div class="experience-header">
-                <h1 class="experience-title"><a href="#" target="_blank">Paper title 2</a></h1>
-              </div>
-              <p class="experience-description"><span class="author-highlight">Author</span>, Authors</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Honors -->
-      <section class="content-section" id="Honors">
-        <div class="section-header">
-          <h2 class="section-title">Honors</h2>
-          <button class="toggle-btn" onclick="toggleGroup('honors-group', this)">Show All</button>
-        </div>
-
-        <div id="honors-group" class="experience-group">
-          <!-- 기본 노출 -->
-          <div class="experience-container">
-            <div class="experience-text">
-              <div class="experience-header">
-                <h1 class="experience-title">Award 1</h1>
-                <span class="experience-dates">[Year]</span>
-              </div>
-              <p class="experience-description">
-                Award description
-              </p>
-            </div>
-          </div>
-
-          <div class="experience-container" data-extra="true">
-            <div class="experience-text">
-              <div class="experience-header">
-                <h1 class="experience-title">Award 2</h1>
-                <span class="experience-dates">[Year]</span>
-              </div>
-              <p class="experience-description">
-                Award description ---------------------------------------------------------------------------------------------------
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-content">
-      <p class="copyright">© 2025 Chanhwi Kim. All Rights Reserved.<br/>Designed by Chanhwi Kim.</p>
-    </div>
-  </footer>
-
-  <script>
-    const _autoHeightObservers = new WeakMap();
-    function _startAutoHeight(el){
-      if (_autoHeightObservers.has(el)) return;
-      const ro = new ResizeObserver(() => {
-        if (el.classList.contains('is-open')) {
-          el.style.maxHeight = el.scrollHeight + 'px';
-        }
-      });
-      ro.observe(el);
-      _autoHeightObservers.set(el, ro);
-    }
-    function _stopAutoHeight(el){
-      const ro = _autoHeightObservers.get(el);
-      if (ro){ ro.disconnect(); _autoHeightObservers.delete(el); }
-    }
-
-    // ====== 그룹 토글: data-extra 카드들만 열고/닫기 ======
-    function toggleGroup(groupId, btn){
-    const group = document.getElementById(groupId);
-    if (!group) return;
-
-    const extras = Array.from(group.querySelectorAll('[data-extra="true"]'));
-    if (!extras.length){ btn.disabled = true; btn.style.opacity = .6; return; }
-
-    const shouldOpen = extras.some(el => !el.classList.contains('is-open'));
-    btn.textContent = shouldOpen ? 'Hide' : 'Show All';
-
-    extras.forEach(el => {
-        // 기존 transitionend 이벤트 제거
-        const newTransitionEnd = (e) => {
-        if (e.propertyName === 'max-height') {
-            el.classList.remove('animating');
-            if (shouldOpen) {
-            el.classList.add('ready');
-            } else {
-            el.classList.remove('is-open');
-            }
-            el.removeEventListener('transitionend', newTransitionEnd);
-        }
-        };
-        
-        // 기존 리스너 제거하고 새 리스너 추가
-        el.removeEventListener('transitionend', newTransitionEnd);
-        el.addEventListener('transitionend', newTransitionEnd);
-        
-        el.classList.add('animating');
-
-        if (shouldOpen){
-        // 열기
-        el.classList.add('is-open');
-        el.classList.remove('ready');
-        // 높이 계산 후 애니메이션 시작
-        requestAnimationFrame(() => {
-            el.style.maxHeight = el.scrollHeight + 'px';
-            el.style.opacity = '1';
-        });
-        _startAutoHeight(el);
-        } else {
-        // 닫기 - 한번에 처리
-        el.classList.remove('ready');
-        el.style.maxHeight = '0px';
-        el.style.opacity = '0';
-        _stopAutoHeight(el);
-        }
-    });
-    }
-
-    // ====== 초기 상태: 모든 data-extra 접힘 ======
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.experience-container[data-extra="true"]').forEach(el => {
-        el.classList.remove('is-open','ready','animating');
-        el.style.maxHeight = '0px';
-        el.style.opacity = '0';
-        _stopAutoHeight(el);
-      });
-    });
-
-    // ====== 햄버거 메뉴 ======
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    const navItems = document.querySelectorAll('.nav-links a');
-
-    if (hamburger) {
-      hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        const isOpen = navLinks.classList.contains('active');
-        navItems.forEach((link, idx) => {
-          if (isOpen) setTimeout(() => link.classList.add('visible'), idx * 60);
-          else link.classList.remove('visible');
-        });
-      });
-
-      navItems.forEach((link) => {
-        link.addEventListener('click', () => {
-          if (navLinks.classList.contains('active')) {
-            navLinks.classList.remove('active');
-            navItems.forEach((l) => l.classList.remove('visible'));
-          }
-        });
-      });
-
-      window.addEventListener('resize', () => {
-        if (window.innerWidth > 920) {
-          navLinks.classList.remove('active');
-          navItems.forEach((l) => l.classList.remove('visible'));
-        }
-      });
-    }
-  </script>
-</body>
+    <noscript>
+      <div class="noscript-note">This portfolio needs JavaScript enabled to load its CV content.</div>
+    </noscript>
+  </body>
 </html>

@@ -276,10 +276,18 @@
 
     revealSection("[data-education]", data.education, (item) => {
       const details = [item.institution, item.location].filter(Boolean).join(" · ");
+      const detailItems = Array.isArray(item.details)
+        ? item.details
+        : item.details
+          ? [item.details]
+          : [];
+      const detailList = hasItems(detailItems)
+        ? `<ul class="bullet-list">${detailItems
+            .map((detail) => `<li>${escapeHTML(detail)}</li>`)
+            .join("")}</ul>`
+        : "";
       return `<article class="compact-item">
-        <div><h3>${escapeHTML(item.degree)}</h3>${details ? `<p>${escapeHTML(details)}</p>` : ""}${
-          item.details ? `<p>${escapeHTML(item.details)}</p>` : ""
-        }</div>
+        <div><h3>${escapeHTML(item.degree)}</h3>${details ? `<p>${escapeHTML(details)}</p>` : ""}${detailList}</div>
         <span class="compact-meta">${escapeHTML(item.period)}</span>
       </article>`;
     });

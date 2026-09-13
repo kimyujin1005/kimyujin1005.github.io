@@ -12,23 +12,23 @@ window.PORTFOLIO_DATA = {
   name: "Yujin Kim",
   firstName: "Yujin",
   initials: "YK",
-  role: "Developer",
-  headline: "I build thoughtful software.",
-  status: "Portfolio in progress",
+  role: "Ph.D. Student · Computer Architecture Researcher",
+  headline: "I explore efficient architectures for AI.",
+  status: "Ph.D. student at UC Merced",
   intro:
-    "I’m preparing this space to share my experience, projects, and research.",
+    "I’m a Ph.D. student in Electrical Engineering and Computer Science at UC Merced, working with the MoCA Lab.",
   about: [
-    "Hello, I’m Yujin. This portfolio is being prepared from my CV.",
-    "The finished site will bring together my experience, selected projects, education, publications, and the tools I use.",
+    "Hello, I’m Yujin, a Ph.D. student at the University of California, Merced and a member of the MoCA (Merced Computer Architecture) Lab.",
+    "My research interests include computer architecture and AI accelerator architecture, with prior work in RISC-V accelerator design and IP-based SoC integration.",
   ],
 
-  location: "",
+  location: "Merced, California, USA",
   email: "",
   avatar: "",
   resume: "",
-  availability: "CV details coming soon",
+  availability: "Ph.D. student · Aug. 2026 — Present",
 
-  focus: ["Software development", "Research", "Problem solving"],
+  focus: ["Computer Architecture", "AI Accelerators", "RISC-V & SoC Design"],
 
   socials: [
     {
@@ -44,7 +44,39 @@ window.PORTFOLIO_DATA = {
   experience: [],
   projects: [],
   skills: [],
-  education: [],
+  education: [
+    {
+      degree:
+        "Ph.D. in Engineering, Electrical Engineering and Computer Science",
+      institution: "University of California, Merced",
+      location: "Merced, California, USA",
+      period: "Aug. 2026 — Present",
+      details: [
+        "Advisor: Prof. Hyeran Jeon",
+        "MoCA (Merced Computer Architecture) Lab",
+      ],
+    },
+    {
+      degree: "M.S. in Computer Science and Engineering",
+      institution: "Korea University",
+      location: "Seongbuk-gu, Seoul, South Korea",
+      period: "Aug. 2026",
+      details: [
+        "Advisor: Prof. Gunjae Koo",
+        "Focus: Computer Architecture and AI Accelerator Architecture",
+      ],
+    },
+    {
+      degree: "B.S. in Electrical Engineering",
+      institution: "Soongsil University",
+      location: "Dongjak-gu, Seoul, South Korea",
+      period: "Feb. 2023",
+      details: [
+        "Advisor: Prof. Inchae Song",
+        "Thesis: Accelerator Design using the RISC-V eXpress platform and IP-based SoC integration",
+      ],
+    },
+  ],
   publications: [],
   honors: [],
 };
